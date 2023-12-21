@@ -1,2 +1,3 @@
-
-return {}
+return {
+    { import = 'plugins.lsp' },
+}
