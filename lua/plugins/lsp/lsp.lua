@@ -27,10 +27,15 @@ return {
               unusedparams = true,
             },
             staticcheck = true,
-            -- gofumpt = true,
             completeUnimported = true,
             usePlaceholders = true,
-
+            -- TODO: 
+            -- uncomment once i figure out inlay hints and nvim-cmp-lsp
+            -- ["ui.inlayhint.hints"] = {
+            --   compositeLiteralFields = true,
+            --   constantValues = true,
+            --   parameterNames = true,
+            -- },
           },
         },
       })
