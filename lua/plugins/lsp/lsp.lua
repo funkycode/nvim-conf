@@ -27,7 +27,7 @@ return {
               unusedparams = true,
             },
             staticcheck = true,
-            gofumpt = true,
+            -- gofumpt = true,
             completeUnimported = true,
             usePlaceholders = true,
 
