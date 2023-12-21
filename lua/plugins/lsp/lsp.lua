@@ -11,9 +11,6 @@ return {
       ensure_installed = {
         "lua_ls",
         "gopls",
-        -- "goimports",
-        -- "gofmt",
-        -- "golines",
       },
     },
   },
@@ -23,6 +20,7 @@ return {
       local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({})
       lspconfig.gopls.setup({
+        root_dir = require("lspconfig/util").root_pattern("go.mod", ".git"),
         settings = {
           gopls = {
             analyses = {
@@ -30,6 +28,9 @@ return {
             },
             staticcheck = true,
             gofumpt = true,
+            completeUnimported = true,
+            usePlaceholders = true,
+
           },
         },
       })

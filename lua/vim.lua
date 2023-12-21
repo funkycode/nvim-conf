@@ -7,3 +7,5 @@ vim.cmd("set shiftwidth=2")
 vim.g.mapleader = " "
 -- spell check
 vim.cmd("set spell syntax=on")
+-- add go to path
+vim.opt.path:append("/home/zogg/go/bin")

@@ -1,8 +1,7 @@
-
 return {
-    "nvim-focus/focus.nvim",
-    version = '*',
-    opts = {
-    },
+  "nvim-focus/focus.nvim",
+  version = '*',
+  opts = {
+  },
 }
 

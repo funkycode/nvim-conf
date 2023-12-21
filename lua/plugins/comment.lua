@@ -1,15 +1,15 @@
 return {
-    "numToStr/Comment.nvim",
-    opts = {
-            toggler = {
-                line = "<C-/>"
-            },
-            opleader = {
-                line = "<C-/>"
-            },
-            mapping = {
-                basic = true
-            },
+  "numToStr/Comment.nvim",
+  opts = {
+    toggler = {
+      line = "<C-/>"
     },
-    lazy = false,
+    opleader = {
+      line = "<C-/>"
+    },
+    mapping = {
+      basic = true
+    },
+  },
+  lazy = false,
 }
