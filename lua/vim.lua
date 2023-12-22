@@ -8,4 +8,4 @@ vim.g.mapleader = " "
 -- spell check
 vim.cmd("set spell syntax=on")
 -- add go to path
-vim.opt.path:append("/home/zogg/go/bin")
+-- vim.opt.path:append("/home/zogg/go/bin")
