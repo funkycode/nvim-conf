@@ -27,6 +27,9 @@ return {
       end
     )
     opts = {
+      exclude = {
+        filetypes = { 'neo-tree', 'startify', 'dashboard', 'help', 'markdown' },
+      },
       indent = {
         highlight = highlight,
       },
