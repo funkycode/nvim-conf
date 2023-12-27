@@ -48,7 +48,6 @@ return {
       require('lspconfig')['gopls'].setup {
         capabilities = capabilities
       }
-
     end,
   },
 }

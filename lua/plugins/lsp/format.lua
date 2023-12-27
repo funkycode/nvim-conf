@@ -1,21 +1,37 @@
 return {
-  'stevearc/conform.nvim',
-  opts = {
-    formatters_by_ft = {
-      go = { "goimports", "gofmt", "golines" },
+  {
+    'stevearc/conform.nvim',
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        -- Customize or remove this keymap to your liking
+        "<leader>ff",
+        function()
+          require("conform").format({ async = true, lsp_fallback = true })
+        end,
+        mode = "",
+        desc = "Format buffer",
+      },
     },
-  },
-  format_on_save = {
-    -- I recommend these options. See :help conform.format for details.
-    lsp_fallback = true,
-    timeout_ms = 500,
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofmt", "golines" },
+        lua = { "stylua" },
+      },
+      format_on_save = {
+        -- I recommend these options. See :help conform.format for details.
+        lsp_fallback = true,
+        timeout_ms = 500,
+      },
+    },
   },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
     },
-    config = function ()
+    config = function()
       vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
       vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
       vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
