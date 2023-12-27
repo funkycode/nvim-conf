@@ -18,6 +18,7 @@ return {
       ensure_installed = {
         "lua_ls",
         "gopls",
+        "rust_analyzer",
       },
     },
   },
@@ -46,6 +47,7 @@ return {
           },
         },
       })
+      lspconfig.rust_analyzer.setup({})
 
       -- TODO: 
       -- investigate the keys param or how to define keymaps per plugin or have global keys file
