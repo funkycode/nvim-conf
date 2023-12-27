@@ -37,8 +37,7 @@ return {
             staticcheck = true,
             completeUnimported = true,
             usePlaceholders = true,
-            -- TODO: 
-            -- uncomment once i figure out inlay hints and nvim-cmp-lsp
+            -- TODO: uncomment once i figure out inlay hints and nvim-cmp-lsp
             -- ["ui.inlayhint.hints"] = {
             --   compositeLiteralFields = true,
             --   constantValues = true,
@@ -49,7 +48,7 @@ return {
       })
       lspconfig.rust_analyzer.setup({})
 
-      -- TODO: 
+      -- TODO:
       -- investigate the keys param or how to define keymaps per plugin or have global keys file
 
       -- keymaps:
@@ -59,7 +58,7 @@ return {
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
         desc = "Go to definition",
       })
-      vim.keymap.set({'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action,  {
+      vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {
         desc = "Code actions",
       })
     end,
