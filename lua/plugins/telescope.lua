@@ -1,9 +1,11 @@
-return  {
+return {
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      "jvgrootveld/telescope-zoxide",
+      "debugloop/telescope-undo.nvim",
     },
     config = function()
       local builtin = require("telescope.builtin")
@@ -14,7 +16,7 @@ return  {
   {
     "nvim-telescope/telescope-ui-select.nvim",
     config = function()
-      local z_utils = require("telescope._extensions.zoxide.utils")
+      -- local z_utils = require("telescope._extensions.zoxide.utils")
       require("telescope").setup({
         extensions = {
           ["ui-select"] = {
@@ -44,12 +46,14 @@ return  {
               -- ["<C-q>"] = { action = z_utils.create_basic_command("split") },
             },
           },
+          undo = {
+          },
         }
       })
       require("telescope").load_extension("ui-select")
       require("telescope").load_extension("persisted")
-      require("telescope").load_extension('zoxide')
+      require("telescope").load_extension("zoxide")
+      require("telescope").load_extension("undo")
     end,
   },
 }
-
