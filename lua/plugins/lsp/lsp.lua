@@ -53,9 +53,12 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
 			lspconfig.gopls.setup({
+				capabilities = capabilities,
 				root_dir = require("lspconfig/util").root_pattern("go.mod", ".git"),
 				settings = {
 					gopls = {
@@ -74,14 +77,30 @@ return {
 					},
 				},
 			})
-			lspconfig.golangci_lint_ls.setup({})
-			lspconfig.helm_ls.setup({})
-			lspconfig.jsonls.setup({})
-			lspconfig.templ.setup({})
-			lspconfig.hydra_lsp.setup({})
-			lspconfig.marksman.setup({})
-			lspconfig.taplo.setup({})
-			lspconfig.rust_analyzer.setup({})
+			lspconfig.golangci_lint_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.helm_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.jsonls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.templ.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.hydra_lsp.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.marksman.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.taplo.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+			})
 
 			-- TODO:
 			-- investigate the keys param or how to define keymaps per plugin or have global keys file
