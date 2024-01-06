@@ -9,8 +9,14 @@ return {
 				-- "revive",
 				-- "golangci-lint",
 			},
-			json = { "cfn-lint", "jsonlint" },
-			yaml = { "yamllint", "cfn-lint" },
+			json = {
+				-- "cfn-lint",
+				"jsonlint",
+			},
+			yaml = {
+				"yamllint",
+				--  "cfn-lint",
+			},
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
