@@ -6,6 +6,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"jvgrootveld/telescope-zoxide",
 			"debugloop/telescope-undo.nvim",
+			"nvim-telescope/telescope-file-browser.nvim",
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
@@ -48,6 +49,7 @@ return {
 					},
 					undo = {},
 					yank_history = {},
+					file_browser = {},
 				},
 			})
 			require("telescope").load_extension("ui-select")
@@ -55,6 +57,7 @@ return {
 			require("telescope").load_extension("zoxide")
 			require("telescope").load_extension("undo")
 			require("telescope").load_extension("yank_history")
+			require("telescope").load_extension("file_browser")
 		end,
 	},
 }
