@@ -7,3 +7,5 @@ vim.opt.termguicolors = true
 vim.opt.fillchars = vim.opt.fillchars + "diff:."
 -- use system clipboard
 vim.opt.clipboard = "unnamedplus"
+-- complete options
+vim.opt.completeopt = { "menuone", "noselect" }
