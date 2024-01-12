@@ -4,6 +4,15 @@ My humble attempt to configure nvim for my needs
 
 This is still WIP, as I am only learning both nvim and it's configuration
 
+## Requirements:
+
+```
+ripgrep
+delve
+tinygo
+zoxide
+```
+
 ## Helpful references:
 
 - [Neovim from scratch series](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn)
