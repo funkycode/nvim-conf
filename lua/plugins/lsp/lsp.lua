@@ -18,6 +18,9 @@ return {
 				"templ",
 				"tflint",
 				"hydra_lsp",
+				"htmx",
+				"tailwindcss",
+				"html",
 			},
 		},
 	},
@@ -40,6 +43,7 @@ return {
 				"jsonlint",
 				"yamllint",
 				"cfn-lint",
+				"htmlhint",
 				-- TODO: check those too:
 				"revive",
 				-- 'misspell',
@@ -101,7 +105,15 @@ return {
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 			})
-
+			lspconfig.htmx.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.html.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+			})
 			-- TODO:
 			-- investigate the keys param or how to define keymaps per plugin or have global keys file
 
