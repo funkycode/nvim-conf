@@ -44,6 +44,7 @@ return {
 				"yamllint",
 				"cfn-lint",
 				"htmlhint",
+				"llm-ls",
 				-- TODO: check those too:
 				"revive",
 				-- 'misspell',
@@ -58,6 +59,7 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
@@ -66,8 +68,12 @@ return {
 				root_dir = require("lspconfig/util").root_pattern("go.mod", ".git"),
 				settings = {
 					gopls = {
+						experimentalPostfixCompletions = true,
 						analyses = {
+							unreachable = true,
+							nilness = true,
 							unusedparams = true,
+							shadow = true,
 						},
 						staticcheck = true,
 						completeUnimported = true,
@@ -126,6 +132,15 @@ return {
 			})
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
 				desc = "Code actions",
+			})
+			vim.keymap.set("n", "gr", vim.lsp.buf.references, {
+				desc = "Go to references",
+			})
+			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {
+				desc = "Go to implementation",
+			})
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+				desc = "Rename",
 			})
 		end,
 		keys = {},

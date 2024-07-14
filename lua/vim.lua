@@ -9,3 +9,5 @@ vim.g.mapleader = " "
 vim.cmd("set spell syntax=on")
 -- add go to path
 -- vim.opt.path:append("/home/zogg/go/bin")
+-- set keymaps for zmk highlight
+vim.cmd("autocmd BufNewFile,BufRead *.keymap set filetype=dts")

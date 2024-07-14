@@ -1,6 +1,6 @@
 return {
 	"Cassin01/wf.nvim",
-	-- enabled = false,
+	enabled = false,
 	version = "*",
 	-- opts = {},
 	config = function()
