@@ -1,8 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
-	-- TODO: remove once nvim is 0.10
-	-- tag = "v3.5.4",
 	config = function()
 		local highlight = {
 			"RainbowRed",
