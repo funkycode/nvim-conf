@@ -4,15 +4,16 @@ return {
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
 		keys = {
-			{
-				-- Customize or remove this keymap to your liking
-				"<leader>ff",
-				function()
-					require("conform").format({ async = true, lsp_fallback = true })
-				end,
-				mode = "",
-				desc = "Format buffer",
-			},
+			-- Do I even need this, as I have autoformat on save anyway
+			-- {
+			-- 	-- Customize or remove this keymap to your liking
+			-- 	"<leader>cf",
+			-- 	function()
+			-- 		require("conform").format({ async = true, lsp_fallback = true })
+			-- 	end,
+			-- 	mode = "",
+			-- 	desc = "Format buffer",
+			-- },
 		},
 		opts = {
 			formatters_by_ft = {
@@ -28,7 +29,7 @@ return {
 			format_on_save = {
 				-- I recommend these options. See :help conform.format for details.
 				lsp_fallback = true,
-				timeout_ms = 500,
+				timeout_ms = 800,
 			},
 		},
 	},

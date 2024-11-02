@@ -19,7 +19,7 @@ return {
 				"tflint",
 				"hydra_lsp",
 				"htmx",
-				"tailwindcss",
+				-- "tailwindcss",
 				"html",
 			},
 		},
@@ -115,9 +115,6 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 			})
 			-- TODO:

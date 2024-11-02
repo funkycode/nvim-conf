@@ -15,10 +15,10 @@ return {
 				name = "personal",
 				path = "~/obsidian/projects/batata.io",
 			},
-			{
-				name = "work",
-				path = "~/obsidian/projects/work",
-			},
+			-- {
+			-- 	name = "work",
+			-- 	path = "~/obsidian/projects/work",
+			-- },
 		},
 	},
 }

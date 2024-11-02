@@ -7,11 +7,29 @@ return {
 			"jvgrootveld/telescope-zoxide",
 			"debugloop/telescope-undo.nvim",
 			"nvim-telescope/telescope-file-browser.nvim",
+			"nvim-telescope/telescope-live-grep-args.nvim",
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+			local extensions = require("telescope").extensions
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "TelescopeFindFiles" })
+			vim.keymap.set(
+				"n",
+				"<leader>fg",
+				extensions.live_grep_args.live_grep_args,
+				{ desc = "TelescopeLiveGrepArgs" }
+			)
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "TelescopeBuffers" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "TelescopeHelpTags" })
+			vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "TelescopeLSPDocumentSymbols" })
+			vim.keymap.set("n", "<leader>fi", "<cmd>AdvancedGitSearch<cr>", { desc = "TelescopeAdvancedGitSearch" })
+			vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "TelescopeTreesitter" })
+			vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "TelescopeOldFiles" })
+			vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "TelescopeReferences" })
+			vim.keymap.set("n", "<leader>fi", builtin.lsp_implementations, { desc = "TelescopeImplementations" })
+			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "TelescopeGrepString" })
+			vim.keymap.set("n", "<leader>z", extensions.zoxide.list, { desc = "TelescopeZoxide" })
+			vim.keymap.set("n", "<leader>c", builtin.spell_suggest, { desc = "TelescopeSpellSuggest" })
 		end,
 	},
 	{
@@ -29,7 +47,6 @@ return {
 						},
 					},
 					zoxide = {
-						prompt_title = "[ Walking on the shoulders of TJ ]",
 						mappings = {
 							default = {
 								after_action = function(selection)
@@ -50,6 +67,9 @@ return {
 					undo = {},
 					yank_history = {},
 					file_browser = {},
+					advanced_git_search = {
+						diff_plugin = "diffview",
+					},
 				},
 			})
 			require("telescope").load_extension("ui-select")
@@ -58,6 +78,8 @@ return {
 			require("telescope").load_extension("undo")
 			require("telescope").load_extension("yank_history")
 			require("telescope").load_extension("file_browser")
+			require("telescope").load_extension("live_grep_args")
+			require("telescope").load_extension("advanced_git_search")
 		end,
 	},
 }

@@ -6,7 +6,7 @@ return {
 	opts = {},
 	keys = {
 		{
-			"<leader>fs",
+			"<leader>ns",
 			"<cmd>:TSJToggle<cr>",
 			desc = "Toggle node join/split",
 		},
