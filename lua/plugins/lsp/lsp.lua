@@ -57,69 +57,71 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-				root_dir = require("lspconfig/util").root_pattern("go.mod", ".git"),
-				settings = {
-					gopls = {
-						experimentalPostfixCompletions = true,
-						analyses = {
-							unreachable = true,
-							nilness = true,
-							unusedparams = true,
-							shadow = true,
+		dependencies = { "saghen/blink.cmp" },
+		opts = {
+			servers = {
+				lua_ls = {},
+				gopls = {
+					single_file_support = true,
+					settings = {
+						gopls = {
+							experimentalPostfixCompletions = true,
+							analyses = {
+								unreachable = true,
+								nilness = true,
+								unusedparams = true,
+								shadow = true,
+							},
+							staticcheck = true,
+							completeUnimported = true,
+							usePlaceholders = true,
+							-- TODO: uncomment once i figure out inlay hints and nvim-cmp-lsp
+							-- ["ui.inlayhint.hints"] = {
+							--   compositeLiteralFields = true,
+							--   constantValues = true,
+							--   parameterNames = true,
+							-- },
 						},
-						staticcheck = true,
-						completeUnimported = true,
-						usePlaceholders = true,
-						-- TODO: uncomment once i figure out inlay hints and nvim-cmp-lsp
-						-- ["ui.inlayhint.hints"] = {
-						--   compositeLiteralFields = true,
-						--   constantValues = true,
-						--   parameterNames = true,
-						-- },
 					},
 				},
-			})
-			lspconfig.golangci_lint_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.helm_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.jsonls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.templ.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.hydra_lsp.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.marksman.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.taplo.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.htmx.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			-- TODO:
-			-- investigate the keys param or how to define keymaps per plugin or have global keys file
-
+				golangci_lint_ls = {},
+				helm_ls = {},
+				jsonls = {},
+				marksman = {},
+				taplo = {},
+				rust_analyzer = {
+					settings = {
+						["rust-analyzer"] = {
+							cargo = { allFeatures = true },
+							completion = {
+								autoimport = { enable = true },
+							},
+							imports = {
+								granularity = {
+									group = "module",
+								},
+								prefix = "self",
+							},
+						},
+					},
+				},
+				templ = {},
+				-- tflint = {},
+				hydra_lsp = {},
+				htmx = {},
+				html = {},
+			},
+		},
+		config = function(_, opts)
+			local lspconfig = require("lspconfig")
+			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			for server, config in pairs(opts.servers or {}) do
+				if server == "gopls" then
+					config.root_dir = lspconfig.util.root_pattern("go.mod", ".git")
+				end
+				config.capabilities = require("blink.cmp").get_lsp_capabilities()
+				lspconfig[server].setup(config)
+			end
 			-- keymaps:
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {
 				desc = "Display information under cursor",
