@@ -18,6 +18,7 @@ return {
 		opts = {
 			formatters_by_ft = {
 				go = { "goimports", "gofmt", "golines" },
+				rust = { "rustfmt" },
 				css = { "prettier" },
 				html = { "prettier" },
 				json = { "prettier" },

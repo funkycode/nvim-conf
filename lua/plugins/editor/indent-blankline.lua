@@ -27,18 +27,15 @@ return {
 			exclude = {
 				filetypes = { "neo-tree", "startify", "dashboard", "help", "markdown" },
 			},
-			-- indent = {
-			-- 	{ highlight = highlight },
-			-- },
-			scope = { highlight = highlight },
+			indent = {
+				char = { "╎" },
+			},
+			scope = {
+				highlight = highlight,
+			},
 		}
 		vim.g.rainbow_delimiters = { highlight = highlight }
 		require("ibl").setup(opts)
 		hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 	end,
-	-- opts = {
-	-- 	exclude = {
-	-- 		filetypes = { "neo-tree", "startify", "dashboard", "help", "markdown" },
-	-- 	},
-	-- },
 }

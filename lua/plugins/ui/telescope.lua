@@ -8,6 +8,7 @@ return {
 			"debugloop/telescope-undo.nvim",
 			"nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-live-grep-args.nvim",
+			"amiroslaw/telescope-changes.nvim",
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
@@ -28,6 +29,8 @@ return {
 			vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "TelescopeReferences" })
 			vim.keymap.set("n", "<leader>fi", builtin.lsp_implementations, { desc = "TelescopeImplementations" })
 			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "TelescopeGrepString" })
+			vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "TelescopeJumplist" })
+			vim.keymap.set("n", "<leader>fc", "<cmd>Telescope changes<cr>", { desc = "TelescopeChanges" })
 			vim.keymap.set("n", "<leader>z", extensions.zoxide.list, { desc = "TelescopeZoxide" })
 			vim.keymap.set("n", "<leader>c", builtin.spell_suggest, { desc = "TelescopeSpellSuggest" })
 		end,
@@ -80,6 +83,7 @@ return {
 			require("telescope").load_extension("file_browser")
 			require("telescope").load_extension("live_grep_args")
 			require("telescope").load_extension("advanced_git_search")
+			require("telescope").load_extension("changes")
 		end,
 	},
 }
