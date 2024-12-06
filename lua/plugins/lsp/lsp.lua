@@ -119,7 +119,7 @@ return {
 				if server == "gopls" then
 					config.root_dir = lspconfig.util.root_pattern("go.mod", ".git")
 				end
-				config.capabilities = require("blink.cmp").get_lsp_capabilities()
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 				lspconfig[server].setup(config)
 			end
 			-- keymaps:

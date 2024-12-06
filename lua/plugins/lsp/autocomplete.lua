@@ -4,63 +4,43 @@ return {
 		enabled = true,
 		lazy = false, -- lazy loading handled internally
 		version = "v0.*",
-		-- build = "cargo build --release",
+		-- branch = "main",
+		-- build = "~/.cargo/bin/rustup install nightly && ~/.cargo/bin/rustup run nightly cargo build --release",
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 		},
 		opts = {
-			windows = {
-				autocomplete = {
-					-- winhighlight = "Normal:None,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+			keymap = { preset = "enter" },
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				-- nerd_font_variant = "mono",
+			},
+			completion = {
+				menu = {
 					border = "single",
-					-- draw = {
-					-- padding = { 1, 0 },
-					-- components = {
-					-- 	columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-					-- },
-					-- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-					-- components = {
-					-- 	kind_icon = { width = { fill = true } },
-					-- columns = { { "kind_icon" }, { "label", gap = 1 } },
-					-- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-					-- },
-					-- },
+					scrollbar = false,
+					draw = {
+						padding = { 1, 0 },
+						columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } },
+					},
+				},
+				accept = {
+
+					auto_brackets = { enabled = true },
 				},
 				documentation = {
-					winhighlight = "Normal:None,FloatBorder:BlinkCmpMenuBorder",
-					border = "single",
 					auto_show = true,
-					auto_show_delay_ms = 0,
+					window = {
+						winhighlight = "Normal:None,FloatBorder:BlinkCmpMenuBorder",
+						border = "single",
+					},
+					-- auto_show_delay_ms = 0,
 				},
 			},
-			accept = {
-				auto_brackets = { enabled = true },
-				--
+			signature = {
+				enabled = true,
 			},
-			keymap = { preset = "enter" },
-			--
-			highlight = {
-				use_nvim_cmp_as_default = true,
-			},
-			nerd_font_variant = "mono",
-
-			-- experimental signature help support
-			trigger = {
-				signature_help = {
-					enabled = true,
-				},
-				completion = {
-					show_in_snippet = true,
-				},
-			},
-		},
-
-		-- allows extending the enabled_providers array elsewhere in your config
-		-- without having to redefining it
-		-- opts_extend = { "sources.completion.enabled_providers" },
-		signature_help = {
-			enabled = true,
 		},
 		-- sources = {
 		-- 	-- list of enabled providers
