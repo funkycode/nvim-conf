@@ -6,7 +6,27 @@ return {
 			local config = require("nvim-treesitter.configs")
 			config.setup({
 				-- auto_install = true,
-				ensure_installed = { "lua", "go", "yaml", "json", "vim", "rust", "toml", "norg", "devicetree" },
+				ensure_installed = {
+					"lua",
+					"go",
+					"yaml",
+					"json",
+					"vim",
+					"rust",
+					"toml",
+					"norg",
+					"devicetree",
+					"sql",
+					"markdown",
+					"markdown_inline",
+					"bash",
+					"just",
+					"regex",
+					"dockerfile",
+					"css",
+					"html",
+					"toml",
+				},
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
