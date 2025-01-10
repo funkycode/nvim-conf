@@ -9,6 +9,9 @@ return {
 				ensure_installed = {
 					"lua",
 					"go",
+					"gomod",
+					"gotmpl",
+					"templ",
 					"yaml",
 					"json",
 					"vim",
@@ -26,6 +29,8 @@ return {
 					"css",
 					"html",
 					"toml",
+					"proto",
+					"just",
 				},
 				highlight = { enable = true },
 				indent = { enable = true },
@@ -34,6 +39,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
+		enabled = false,
 		opts = {
 			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
 			max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.

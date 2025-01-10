@@ -9,6 +9,9 @@ return {
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			"rafamadriz/friendly-snippets",
+			{ "L3MON4D3/LuaSnip", version = "v2.*" },
+			-- "saghen/blink.compat",
+			"kristijanhusak/vim-dadbod-completion",
 		},
 		opts = {
 			keymap = { preset = "enter" },
@@ -16,17 +19,27 @@ return {
 				use_nvim_cmp_as_default = true,
 				-- nerd_font_variant = "mono",
 			},
+			snippets = {
+				preset = "luasnip",
+			},
 			completion = {
+				list = {
+					selection = {
+						preselect = false,
+						auto_insert = true,
+					},
+				},
 				menu = {
-					border = "single",
+					-- border = "single",
 					scrollbar = false,
 					draw = {
+						align_to = "kind_icon",
+						-- treesitter = true,
 						padding = { 1, 0 },
-						columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } },
+						columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
 					},
 				},
 				accept = {
-
 					auto_brackets = { enabled = true },
 				},
 				documentation = {
@@ -37,17 +50,26 @@ return {
 					},
 					-- auto_show_delay_ms = 0,
 				},
+				ghost_text = {
+					-- enabled = true,
+				},
 			},
 			signature = {
 				enabled = true,
 			},
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer", "dadbod", "markdown" },
+				providers = {
+					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+					markdown = { name = "RenderMarkdown", module = "render-markdown.integ.blink" },
+				},
+				cmdline = {},
+			},
+			-- 	-- list of enabled providers
+			-- 	completion = {
+			-- 		enabled_providers = { "lsp", "path", "snippets", "buffer" },
+			-- 	},
 		},
-		-- sources = {
-		-- 	-- list of enabled providers
-		-- 	completion = {
-		-- 		enabled_providers = { "lsp", "path", "snippets", "buffer" },
-		-- 	},
-		-- },
 	},
 
 	-- nvim-cmp completion

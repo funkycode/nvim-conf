@@ -21,6 +21,9 @@ return {
 				"htmx",
 				-- "tailwindcss",
 				"html",
+				"sqls",
+				-- "bufls",
+				"pbls",
 			},
 		},
 	},
@@ -37,14 +40,16 @@ return {
 				"stylua",
 				"golangci-lint",
 				"json-to-struct",
-				"prettier",
-				"yamlfmt",
-				"stylua",
-				"jsonlint",
-				"yamllint",
-				"cfn-lint",
-				"htmlhint",
 				"llm-ls",
+				"htmlhint",
+				"cfn-lint",
+				"yamllint",
+				"jsonlint",
+				"stylua",
+				"yamlfmt",
+				"prettier",
+				"sqlfmt",
+				"buf",
 				-- TODO: check those too:
 				"revive",
 				-- 'misspell',
@@ -60,11 +65,19 @@ return {
 		dependencies = { "saghen/blink.cmp" },
 		opts = {
 			servers = {
+				buf_ls = {},
+				pbls = {},
+				sqls = {},
 				lua_ls = {},
 				gopls = {
 					single_file_support = true,
+					filetypes = { "go", "gomod", "gowork", "gohtml", "gotmpl", "go.html", "go.tmpl", "go.tpl", "tpl" },
 					settings = {
 						gopls = {
+							templateExtensions = {
+								"tpl",
+								"gotmpl",
+							},
 							experimentalPostfixCompletions = true,
 							analyses = {
 								unreachable = true,
@@ -116,11 +129,20 @@ return {
 			local lspconfig = require("lspconfig")
 			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			for server, config in pairs(opts.servers or {}) do
+				if server == "sqls" then
+					lspconfig[server].setup({
+						on_attach = function(client, bufnr)
+							require("sqls").on_attach(client, bufnr)
+						end,
+					})
+					goto next
+				end
 				if server == "gopls" then
 					config.root_dir = lspconfig.util.root_pattern("go.mod", ".git")
 				end
-				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				config.capabilities = require("blink.cmp").get_lsp_capabilities()
 				lspconfig[server].setup(config)
+				::next::
 			end
 			-- keymaps:
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {

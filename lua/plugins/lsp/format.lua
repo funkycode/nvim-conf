@@ -1,7 +1,14 @@
 return {
 	{
+		"zapling/mason-conform.nvim",
+		dependencies = { "williamboman/mason.nvim", "stevearc/conform.nvim" },
+		opts = {
+			ensure_installed = { "prettier", "stylua", "sqlfluff" },
+		},
+	},
+	{
 		"stevearc/conform.nvim",
-		event = { "BufWritePre" },
+		event = { "BufReadPre", "BufWritePre", "BufNewFile" },
 		cmd = { "ConformInfo" },
 		keys = {
 			-- Do I even need this, as I have autoformat on save anyway
@@ -16,16 +23,31 @@ return {
 			-- },
 		},
 		opts = {
+			formatters = {
+				sqlfluff = {
+					args = {
+						"format",
+						"--dialect=ansi",
+						"-",
+					},
+					require_cwd = false,
+				},
+			},
 			formatters_by_ft = {
 				go = { "goimports", "gofmt", "golines" },
 				rust = { "rustfmt" },
 				css = { "prettier" },
-				html = { "prettier" },
+				html = { "prettier", "templ" },
+				htmx = { "prettier", "templ" },
+				toml = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier", "yamlfmt" },
+				sql = { "sqlfluff" },
 				markdown = { "prettier" },
 				graphql = { "prettier" },
 				lua = { "stylua" },
+				proto = { "buf" },
+				justfile = { "just" },
 			},
 			format_on_save = {
 				-- I recommend these options. See :help conform.format for details.
@@ -39,7 +61,6 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
 		keys = {
-
 			{
 				"<leader>xx",
 				function()

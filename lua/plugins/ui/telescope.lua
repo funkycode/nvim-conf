@@ -9,6 +9,7 @@ return {
 			"nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-live-grep-args.nvim",
 			"amiroslaw/telescope-changes.nvim",
+			"nvim-telescope/telescope-dap.nvim",
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
@@ -40,6 +41,34 @@ return {
 		config = function()
 			-- local z_utils = require("telescope._extensions.zoxide.utils")
 			require("telescope").setup({
+				defaults = {
+					layout_config = {
+						-- prompt_position = "top",
+						preview_cutoff = 120,
+					},
+					file_ignore_patterns = { "node_modules", "package-lock.json" },
+					mappings = {
+						i = {
+							["<C-t>"] = require("trouble.sources.telescope").open,
+						},
+
+						n = {
+							["<C-t>"] = require("trouble.sources.telescope").open,
+						},
+					},
+				},
+				pickers = {
+					buffers = {
+						mappings = {
+							i = {
+								["<c-d>"] = require("telescope.actions").delete_buffer,
+							},
+							n = {
+								["<c-d>"] = require("telescope.actions").delete_buffer,
+							},
+						},
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown({}),
@@ -84,6 +113,7 @@ return {
 			require("telescope").load_extension("live_grep_args")
 			require("telescope").load_extension("advanced_git_search")
 			require("telescope").load_extension("changes")
+			require("telescope").load_extension("dap")
 		end,
 	},
 }
